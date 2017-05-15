@@ -63,15 +63,15 @@ enum sf_t { SF7=7, SF8, SF9, SF10, SF11, SF12 };
  *******************************************************************************/
 
 // SX1272 - Raspberry connections
-int ssPin = 6;
-int dio0  = 7;
-int RST   = 0;
+int ssPin = 24;
+int dio0  = 0;
+int RST   = 2;
 
 // Set spreading factor (SF7 - SF12)
-sf_t sf = SF7;
+sf_t sf = SF12;
 
 // Set center frequency
-uint32_t  freq = 868100000; // in Mhz! (868.1)
+uint32_t  freq = 920000000; // in Mhz! (868.1)
 
 // Set location
 float lat=0.0;
@@ -278,7 +278,7 @@ void SetupLoRa()
     writeRegister(REG_FRF_MID, (uint8_t)(frf>> 8) );
     writeRegister(REG_FRF_LSB, (uint8_t)(frf>> 0) );
 
-    writeRegister(REG_SYNC_WORD, 0x34); // LoRaWAN public sync word
+    writeRegister(REG_SYNC_WORD, 24); // LoRaWAN public sync word
 
     if (sx1272) {
         if (sf == SF11 || sf == SF12) {
